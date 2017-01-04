@@ -44,7 +44,6 @@ if __name__ == '__main__':
 
     while True:
         try:
-
             # 入力を取得
             if six.PY2:
                 line = raw_input(prompt_string)
