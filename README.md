@@ -14,3 +14,8 @@ CLIによるRPN電卓
 |`*`|乗算|
 |`/`|除算|
 |`%`|剰余|
+
+## License
+Copyright (c) 2017 Masaya SUZUKI <<suzukimasaya428@gmail.com>>
+
+Released under the [MIT license](LICENSE.txt)
