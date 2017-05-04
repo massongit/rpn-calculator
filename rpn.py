@@ -36,21 +36,13 @@ if __name__ == '__main__':
     parser.add_argument('-v', '--version', action='version', version='%(prog)line {0}'.format(__version__))
     args = parser.parse_args()
 
-    # 入力プロンプトで表示する文字
-    prompt_string = '> '
-
     # Stack
     stack = Stack()
 
     while True:
         try:
             # 入力を取得
-            if six.PY2:
-                line = raw_input(prompt_string)
-            else:
-                line = input(prompt_string)
-
-            line = line.strip()
+            line = six.moves.input('> ').strip()
 
             if line.endswith('+') or line.endswith('-') \
                     or line.endswith('*') or line.endswith('/') or line.endswith('%'):  # 演算子が入力されたとき、演算を行う
