@@ -6,6 +6,11 @@ CLIによるRPN電卓
 * Python 2.7.13
 
 ##インストール方法
+1. `six`を導入します。
+   * Ubuntuの場合  
+     `sudo apt python-six`
+   * それ以外の場合  
+     `pip install six`
 1. `echo "alias rpn='python {rpn.pyのフルパス}'" >> ~/.bashrc`コマンドを実行し、`rpn`コマンドを追加します。
 1. `source ~/.bashrc`コマンドを実行し、変更を適用します。
 
