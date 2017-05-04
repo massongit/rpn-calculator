@@ -5,6 +5,10 @@ CLIによるRPN電卓
 * Python 3.6.0
 * Python 2.7.13
 
+##インストール方法
+1. `echo "alias rpn='python {rpn.pyのフルパス}'" >> ~/.bashrc`コマンドを実行し、`rpn`コマンドを追加します。
+1. `source ~/.bashrc`コマンドを実行し、変更を適用します。
+
 ##対応している演算
 
 |演算子|内容|
