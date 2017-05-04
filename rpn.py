@@ -12,7 +12,7 @@ import six
 __author__ = 'Masaya SUZUKI'
 
 # バージョン
-__version__ = '1.0'
+__version__ = '1.1'
 
 
 class Stack(list):
@@ -44,8 +44,9 @@ if __name__ == '__main__':
             # 入力を取得
             line = six.moves.input('> ').strip()
 
+            # 演算子が入力されたとき、演算を行う
             if line.endswith('+') or line.endswith('-') \
-                    or line.endswith('*') or line.endswith('/') or line.endswith('%'):  # 演算子が入力されたとき、演算を行う
+                    or line.endswith('*') or line.endswith('/') or line.endswith('%') or line.endswith('^'):
                 # 数値をStackにpush
                 if 1 < len(line):
                     stack.push(float(line[:-1]))
@@ -64,6 +65,8 @@ if __name__ == '__main__':
                     stack.push(stack_tmp.pop() / stack_tmp.pop())
                 elif line.endswith('%'):  # 剰余のとき
                     stack.push(stack_tmp.pop() % stack_tmp.pop())
+                elif line.endswith('^'):  # 累乗のとき
+                    stack.push(stack_tmp.pop() ** stack_tmp.pop())
             else:  # 数値が入力されたとき、数値をStackにpush
                 stack.push(float(line))
         except EOFError:  # 入力が終了したとき、ループを抜ける
