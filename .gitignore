@@ -113,7 +113,6 @@ $RECYCLE.BIN/
 *.msp
 *.lnk
 .metadata
-bin/
 tmp/
 *.tmp
 *.bak
