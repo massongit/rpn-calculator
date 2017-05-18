@@ -16,7 +16,7 @@ setuptools.setup(
     version=rpn_calculator.rpn.__version__,
     description=rpn_calculator.rpn.__doc__.strip(),
     long_description=readme,
-    url='https://github.com/massongit/rpn_calculator',
+    url='https://github.com/massongit/rpn-calculator',
     author='Masaya SUZUKI',
     author_email='suzukimasaya428@gmail.com',
     license='MIT',
