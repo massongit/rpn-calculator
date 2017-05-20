@@ -12,49 +12,7 @@ import six
 import zenhan
 
 __author__ = 'Masaya SUZUKI'
-__version__ = '1.2.1'
-
-
-class Stack(list):
-    """
-    Stack
-    """
-
-    def __init__(self):
-        super(Stack, self).__init__()
-        self._str_value = ''
-
-    def add_str_value(self, s):
-        """
-        add the str of value
-        :param s: str of value
-        """
-        self._str_value += s
-
-    def push(self, value=None):
-        """
-        push the value
-        :param value: value
-        """
-        if value and self._str_value:  # duplicate
-            raise ValueError('Duplicate value')
-        elif value or self._str_value:
-            if self._str_value:
-                try:
-                    value = decimal.Decimal(self._str_value)
-                except decimal.InvalidOperation:
-                    raise ValueError(self._str_value)
-
-                self._str_value = ''
-
-            self.append(value)
-
-    def top(self):
-        """
-        get the top value
-        :return: top value
-        """
-        return self[-1]
+__version__ = '1.2.1.1'
 
 
 class RPNCalculator:
@@ -63,9 +21,10 @@ class RPNCalculator:
     """
 
     def __init__(self):
-        self._stack = Stack()
+        self._stack = list()
+        self._buffer = ''
         self._operators = {
-            ' ': lambda: self._stack.push(),
+            ' ': lambda: self._push(),
             '+': lambda: self._calculate(lambda x, y: x + y),
             '-': lambda: self._calculate(lambda x, y: x - y),
             '*': lambda: self._calculate(lambda x, y: x * y),
@@ -74,16 +33,32 @@ class RPNCalculator:
             '^': lambda: self._calculate(lambda x, y: x ** y)
         }
 
+    def _push(self, value=None):
+        """
+        push the stack
+        :param value: value
+        """
+        if self._buffer and value:
+            raise AttributeError('Duplicate Value')
+        elif self._buffer or value:
+            if self._buffer:
+                try:
+                    value = decimal.Decimal(self._buffer)
+                except decimal.InvalidOperation:
+                    raise AttributeError(str(self._buffer))
+
+            self._stack.append(value)
+
     def _calculate(self, method):
         """
         calculate
         :param method: calculate method
         """
-        self._stack.push()
+        self._push()
         y = self._stack.pop()
         x = self._stack.pop()
         try:
-            self._stack.push(method(x, y))
+            self._push(method(x, y))
         except decimal.DivisionByZero:
             raise ZeroDivisionError()
 
@@ -96,9 +71,9 @@ class RPNCalculator:
             if s in self._operators:
                 self._operators[s]()
             else:
-                self._stack.add_str_value(s)
+                self._buffer += s
 
-        print(self._stack.top())
+        print(self._stack[-1])
 
 
 def s2u_2(s):
