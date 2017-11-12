@@ -15,9 +15,9 @@ __author__ = 'Masaya SUZUKI'
 __version__ = '1.2.1.1'
 
 
-class RPNCalculator:
+class RPN:
     """
-    RPN Calculator
+    Calculate using Reverse Polish Notation
     """
 
     def __init__(self):
@@ -33,19 +33,18 @@ class RPNCalculator:
             '^': lambda: self._calculate(lambda x, y: x ** y)
         }
 
-    def start(self, formula=None):
+    def execute(self, line):
         """
-        start to calculate
-        :param formula: formula
+        execute a line
+        :param line: line
         """
-        if formula:
-            self._execute(str_to_unicode_python2(formula))
-        else:
-            try:
-                while True:
-                    self._execute(str_to_unicode_python2(six.moves.input('> ')))
-            except EOFError:  # exit when the input ended
-                exit(0)
+        for s in zenhan.z2h(line).strip() + ' ':
+            if s in self._operators:
+                self._operators[s]()
+            else:
+                self._buffer += s
+
+        print(self._stack[-1])
 
     def _clear_buffer(self):
         """
@@ -98,18 +97,34 @@ class RPNCalculator:
         except decimal.DivisionByZero:
             raise ZeroDivisionError()
 
-    def _execute(self, line):
-        """
-        execute a line
-        :param line: line
-        """
-        for s in zenhan.z2h(line).strip() + ' ':
-            if s in self._operators:
-                self._operators[s]()
-            else:
-                self._buffer += s
 
-        print(self._stack[-1])
+class Calculator:
+    """
+    Calculator
+    """
+
+    def __init__(self):
+        self._calculator = RPN()
+
+    def start(self, formula=None):
+        """
+        start to calculate
+        :param formula: formula
+        """
+        if formula:
+            self._calculator.execute(str_to_unicode_python2(formula))
+        else:
+            self._capture_from_stdin()
+
+    def _capture_from_stdin(self):
+        """
+        capture formula from standard input
+        """
+        try:
+            while True:
+                self._calculator.execute(str_to_unicode_python2(six.moves.input('> ')))
+        except EOFError:  # exit when the input ended
+            exit(0)
 
 
 def str_to_unicode_python2(s):
@@ -136,7 +151,8 @@ def main():
     parser.add_argument('-v', '--version', action='version', version='%(prog)s {0}'.format(__version__))
     args = parser.parse_args()
 
-    RPNCalculator().start(args.execute)
+    # calculate
+    Calculator().start(args.execute)
 
 
 # main process
