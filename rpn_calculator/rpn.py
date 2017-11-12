@@ -21,8 +21,8 @@ class RPNCalculator:
     """
 
     def __init__(self):
+        self._clear_buffer()
         self._stack = list()
-        self._buffer = ''
         self._operators = {
             ' ': lambda: self._push(),
             '+': lambda: self._calculate(lambda x, y: x + y),
@@ -33,21 +33,57 @@ class RPNCalculator:
             '^': lambda: self._calculate(lambda x, y: x ** y)
         }
 
+    def start(self, formula=None):
+        """
+        start to calculate
+        :param formula: formula
+        """
+        if formula:
+            self._execute(str_to_unicode_python2(formula))
+        else:
+            try:
+                while True:
+                    self._execute(str_to_unicode_python2(six.moves.input('> ')))
+            except EOFError:  # exit when the input ended
+                exit(0)
+
+    def _clear_buffer(self):
+        """
+        clear the buffer
+        """
+        self._buffer = ''
+
     def _push(self, value=None):
         """
         push the stack
         :param value: value
         """
+        if self._buffer or value:
+            self._check_push(value)
+            self._do_push(value)
+
+    def _check_push(self, value):
+        """
+        check if push is possible
+        :param value: value
+        """
         if self._buffer and value:
             raise AttributeError('Duplicate Value')
-        elif self._buffer or value:
-            if self._buffer:
-                try:
-                    value = decimal.Decimal(self._buffer)
-                except decimal.InvalidOperation:
-                    raise AttributeError(str(self._buffer))
 
-            self._stack.append(value)
+    def _do_push(self, value):
+        """
+        push the stack
+        :param value: value
+        """
+        if self._buffer:
+            try:
+                value = decimal.Decimal(self._buffer)
+            except decimal.InvalidOperation:
+                raise AttributeError(str(self._buffer))
+
+            self._clear_buffer()
+
+        self._stack.append(value)
 
     def _calculate(self, method):
         """
@@ -62,7 +98,7 @@ class RPNCalculator:
         except decimal.DivisionByZero:
             raise ZeroDivisionError()
 
-    def execute(self, line):
+    def _execute(self, line):
         """
         execute a line
         :param line: line
@@ -76,13 +112,13 @@ class RPNCalculator:
         print(self._stack[-1])
 
 
-def s2u_2(s):
+def str_to_unicode_python2(s):
     """
-    str to unicode when Python 2.x
+    in Python 2.x, convert str to unicode
     :param s: str
     :return: unicode
     """
-    if six.PY2:
+    if six.PY2 and isinstance(s, str):
         s = s.decode(sys.getfilesystemencoding())
 
     return s
@@ -100,17 +136,7 @@ def main():
     parser.add_argument('-v', '--version', action='version', version='%(prog)s {0}'.format(__version__))
     args = parser.parse_args()
 
-    # calculator
-    calculator = RPNCalculator()
-
-    if args.execute:  # given formula by the command line argument
-        calculator.execute(s2u_2(args.execute))
-    else:  # given formula by standard input
-        try:
-            while True:
-                calculator.execute(s2u_2(six.moves.input('> ')))
-        except EOFError:  # exit when the input ended
-            exit(0)
+    RPNCalculator().start(args.execute)
 
 
 # main process
