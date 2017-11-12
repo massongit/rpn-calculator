@@ -11,7 +11,7 @@ with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'release.txt'
 
 setuptools.setup(
     name='rpn_calculator',
-    version='1.2.1.1',
+    version='1.2.1.3',
     description='RPN calculator for CLI',
     long_description=readme,
     url='https://github.com/massongit/rpn-calculator',

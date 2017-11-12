@@ -12,7 +12,7 @@ import six
 import zenhan
 
 __author__ = 'Masaya SUZUKI'
-__version__ = '1.2.1.1'
+__version__ = '1.2.1.3'
 
 
 class RPN:

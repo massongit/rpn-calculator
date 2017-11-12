@@ -63,7 +63,7 @@ Pattern 3
     52
 
 .. |LICENSE| image:: https://img.shields.io/badge/license-MIT-blue.svg?style=flat
-   :target: LICENSE
+   :target: https://github.com/massongit/rpn-calculator/blob/master/LICENSE
    :alt: MIT License
 .. |Maintainability| image:: https://api.codeclimate.com/v1/badges/ee4f5ab617bf49620731/maintainability
    :target: https://codeclimate.com/github/massongit/rpn-calculator/maintainability
