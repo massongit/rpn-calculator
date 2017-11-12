@@ -1,13 +1,20 @@
 rpn\_calculator
 ===============
+.. image:: https://img.shields.io/badge/license-MIT-blue.svg?style=flat
+:target: LICENSE
+   :alt: MIT License
+.. image:: https://api.codeclimate.com/v1/badges/ee4f5ab617bf49620731/maintainability
+:target: https://codeclimate.com/github/massongit/rpn-calculator/maintainability
+   :alt: Maintainability
 
-RPN Calculator for CLI
+
+    RPN Calculator for CLI
 
 Environment
 -----------
 
--  Python 3.5.2
--  Python 2.7.12
+-  Python 2.7
+-  Python 3.2 or later
 
 Supported operations
 --------------------
@@ -50,19 +57,13 @@ Pattern 2
 ::
 
     $ rpn
-    > 10 5* 2+
+    > 10 5 * 2 +
     52
     >
 
 Pattern 3
 ::
 
-    $ rpn -e "10 5* 2+"
+    $ rpn -e "10 5 * 2 +"
     52
 
-Licence
--------
-
-Copyright (c) 2017 Masaya SUZUKI <suzukimasaya428@gmail.com>
-
-Released under the MIT license

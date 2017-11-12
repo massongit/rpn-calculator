@@ -3,8 +3,6 @@ import os
 
 import setuptools
 
-import rpn_calculator.rpn
-
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'README.rst'), 'r') as f:
     readme = f.read()
 
@@ -13,8 +11,8 @@ with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'release.txt'
 
 setuptools.setup(
     name='rpn_calculator',
-    version=rpn_calculator.rpn.__version__,
-    description=rpn_calculator.rpn.__doc__.strip(),
+    version='1.2.1.1',
+    description='RPN calculator for CLI',
     long_description=readme,
     url='https://github.com/massongit/rpn-calculator',
     author='Masaya SUZUKI',
@@ -27,6 +25,10 @@ setuptools.setup(
     classifiers=[
         'Environment :: Console',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.5'
-    ],
+        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6'
+    ]
 )
