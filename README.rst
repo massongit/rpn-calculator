@@ -8,8 +8,7 @@ RPN Calculator for CLI
 Environment
 -----------
 
--  Python 2.7
--  Python 3.2 or later
+-  Python 3.7
 
 Supported operations
 --------------------

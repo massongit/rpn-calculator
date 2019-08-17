@@ -6,9 +6,6 @@ import setuptools
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'README.rst'), 'r') as f:
     readme = f.read()
 
-with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'release.txt'), 'r') as f:
-    requires = f.read().split()
-
 setuptools.setup(
     name='rpn_calculator',
     version='1.2.1.3',
@@ -21,14 +18,12 @@ setuptools.setup(
     keywords='RPN Calculator',
     packages=setuptools.find_packages(),
     scripts=glob.glob('bin/*'),
-    install_requires=requires,
+    install_requires=[
+        'six==1.12.0',
+        'zenhan==0.5.2'
+    ],
     classifiers=[
         'Environment :: Console',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.2',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6'
+        'Programming Language :: Python :: 3.7'
     ]
 )
