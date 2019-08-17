@@ -4,13 +4,17 @@
 #
 #    pip-compile --output-file develop.txt develop.in
 #
-args==0.1.0               # via clint
+bleach==3.1.0             # via readme-renderer
 click==6.7                # via pip-tools
-clint==0.5.1              # via twine
+docutils==0.15.2          # via readme-renderer
 first==2.0.1              # via pip-tools
 pip-tools==1.9.0
-pkginfo==1.4.1            # via twine
-requests-toolbelt==0.7.1  # via twine
+pkginfo==1.5.0.1          # via twine
+pygments==2.4.2           # via readme-renderer
+readme-renderer==24.0     # via twine
+requests-toolbelt==0.9.1  # via twine
 requests==2.14.2          # via requests-toolbelt, twine
-six==1.10.0               # via pip-tools
-twine==1.8.1
+six==1.10.0               # via bleach, pip-tools, readme-renderer
+tqdm==4.33.0              # via twine
+twine==1.13.0
+webencodings==0.5.1       # via bleach
