@@ -1,7 +1,7 @@
 rpn\_calculator
 ===============
 
-|LICENSE| |Maintainability| |Dependabot Status|
+|LICENSE| |Maintainability|
 
 RPN Calculator for CLI
 
@@ -67,6 +67,3 @@ Pattern 3
 .. |Maintainability| image:: https://api.codeclimate.com/v1/badges/ee4f5ab617bf49620731/maintainability
    :target: https://codeclimate.com/github/massongit/rpn-calculator/maintainability
    :alt: Maintainability
-.. |Dependabot Status| image:: https://api.dependabot.com/badges/status?host=github&repo=massongit/rpn-calculator
-   :target: https://dependabot.com
-   :alt: Dependabot Status
